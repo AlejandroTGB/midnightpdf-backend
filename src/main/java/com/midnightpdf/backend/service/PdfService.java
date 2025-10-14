@@ -27,7 +27,7 @@ public class PdfService {
             PDPage originalPage = originalDoc.getPage(page);
             PDRectangle originalMediaBox = originalPage.getMediaBox();
 
-            BufferedImage image = pdfRenderer.renderImageWithDPI(page, 200);
+            BufferedImage image = pdfRenderer.renderImageWithDPI(page, 400);
 
             BufferedImage darkImage = new BufferedImage(
                 image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB
