@@ -39,9 +39,11 @@ public class PdfController {
             pdfModificado = file.getBytes();
         }
 
-        return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=modificado.pdf")
-            .contentType(MediaType.APPLICATION_PDF)
-            .body(pdfModificado);
+            String originalName = file.getOriginalFilename();
+            String nuevoNombre = "oscuro_" + (originalName != null ? originalName : "oscuro.pdf");
+            return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + nuevoNombre)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(pdfModificado);
     }
 }
