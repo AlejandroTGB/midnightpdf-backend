@@ -18,6 +18,14 @@ import java.io.IOException;
 @Service
 public class PdfService {
     public byte[] procesarPdfModoOscuro(MultipartFile file) throws IOException {
+        
+        if (file == null || file.isEmpty()) {
+            throw new IOException("No se recibió ningún archivo PDF.");
+        }
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.equalsIgnoreCase("application/pdf")) {
+            throw new IOException("El archivo debe ser un PDF.");
+        }
         PDDocument originalDoc = PDDocument.load(file.getInputStream());
         PDFRenderer pdfRenderer = new PDFRenderer(originalDoc);
 
